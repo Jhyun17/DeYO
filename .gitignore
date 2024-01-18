@@ -1,0 +1,22 @@
+# Default ignored files
+/shelf/
+/workspace.xml
+# Datasource local storage ignored files
+/dataSources/
+/dataSources.local.xml
+# Editor-based HTTP Client requests
+/httpRequests/
+# Pycache
+*.pyc
+__pycache__/
+# Images
+*.jpg
+*.JPG
+*.jpeg
+*.JPEG
+*.png
+# directory
+output/
+wandb/
+.idea/
+.ipynb_checkpoints/
