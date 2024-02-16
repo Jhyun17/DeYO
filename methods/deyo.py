@@ -1,5 +1,5 @@
 """
-Copyright to SAR Authors, ICLR 2023 Oral (notable-top-5%)
+Copyright to DeYO Authors, ICLR 2024 Spotlight (top-5% of the submissions)
 built upon on Tent code.
 """
 
