@@ -130,7 +130,8 @@ def forward_and_adapt_sar(x, iter_, model, args, optimizer, deyo_margin, margin,
         x_prime = rearrange(x_prime, 'b c h w -> b c (h w)')
         x_prime = x_prime[:,:,torch.randperm(x_prime.shape[-1])]
         x_prime = rearrange(x_prime, 'b c (ps1 ps2) -> b c ps1 ps2', ps1=x.shape[-1], ps2=x.shape[-1])
-    outputs_prime = model(x_prime)
+    with torch.no_grad():
+        outputs_prime = model(x_prime)
     
     prob_outputs = outputs[filter_ids_1].softmax(1)
     prob_outputs_prime = outputs_prime.softmax(1)
