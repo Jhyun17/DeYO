@@ -62,11 +62,13 @@ You should modify ROOT variable as [data_root] in exp_deyo.sh.
 ## Citation
 If our DeYO method or biased test-time adaptation settings are helpful in your research, please consider citing our paper:
 ```
-@inproceedings{lee2024entropy,
-  title={Entropy is not Enough for Test-time Adaptation: From the Perspective of Disentangled Factors},
-  author={Lee, Jonghyun and Jung, Dahuin and Lee, Saehyung and Park, Junsung and Shin, Juhyeon and Hwang, Uiwon and Yoon, Sungroh},
-  booktitle = {Internetional Conference on Learning Representations},
-  year = {2024}
+@inproceedings{
+    lee2024entropy,
+    title={Entropy is not Enough for Test-time Adaptation: From the Perspective of Disentangled Factors},
+    author={Jonghyun Lee and Dahuin Jung and Saehyung Lee and Junsung Park and Juhyeon Shin and Uiwon Hwang and Sungroh Yoon},
+    booktitle={The Twelfth International Conference on Learning Representations},
+    year={2024},
+    url={https://openreview.net/forum?id=9w3iw8wDuE}
 }
 ```
 
