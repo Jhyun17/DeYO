@@ -1,7 +1,7 @@
-# Entropy is not Enough for Test-time Adaptation: From the Perspective of Disentangled Factors
+# Entropy is not Enough for Test-Time Adaptation: From the Perspective of Disentangled Factors
 ![MIT License](https://img.shields.io/badge/license-MIT-blue.svg)  
 
-This is the official implementation of [Entropy is not Enough for Test-time Adaptation: From the Perspective of Disentangled Factors 🔗](https://openreview.net/forum?id=9w3iw8wDuE) 
+This is the official implementation of [Entropy is not Enough for Test-Time Adaptation: From the Perspective of Disentangled Factors 🔗](https://openreview.net/forum?id=9w3iw8wDuE) 
 by Jonghyun Lee, Dahuin Jung, Saehyung Lee, Junsung Park, Juhyeon Shin, Uiwon Hwang and Sungroh Yoon (**ICLR 2024 Spotlight, Top-5% of the submissions**).  
 This implementation is based on [SAR implementation 🔗](https://github.com/mr-eggplant/SAR).
 
@@ -64,7 +64,7 @@ If our DeYO method or biased test-time adaptation settings are helpful in your r
 ```
 @inproceedings{
     lee2024entropy,
-    title={Entropy is not Enough for Test-time Adaptation: From the Perspective of Disentangled Factors},
+    title={Entropy is not Enough for Test-Time Adaptation: From the Perspective of Disentangled Factors},
     author={Jonghyun Lee and Dahuin Jung and Saehyung Lee and Junsung Park and Juhyeon Shin and Uiwon Hwang and Sungroh Yoon},
     booktitle={The Twelfth International Conference on Learning Representations},
     year={2024},
