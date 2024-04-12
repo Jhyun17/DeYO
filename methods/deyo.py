@@ -147,10 +147,21 @@ def forward_and_adapt_sar(x, iter_, model, args, optimizer, deyo_margin, margin,
         filter_ids_2 = torch.where(plpd >= -2.0)
     entropys = entropys[filter_ids_2]
     final_backward = len(entropys)
-    plpd = plpd[filter_ids_2]
     
     if targets is not None:
         corr_pl_1 = (targets[filter_ids_1] == prob_outputs.argmax(dim=1)).sum().item()
+        
+    if final_backward==0:
+        del x_prime
+        del plpd
+        
+        if targets is not None:
+            return outputs, backward, 0, corr_pl_1, 0
+        return outputs, backward, 0
+        
+    plpd = plpd[filter_ids_2]
+    
+    if targets is not None:
         corr_pl_2 = (targets[filter_ids_1][filter_ids_2] == prob_outputs[filter_ids_2].argmax(dim=1)).sum().item()
 
     if args.reweight_ent or args.reweight_plpd:
