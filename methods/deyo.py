@@ -15,8 +15,8 @@ import matplotlib.pyplot as plt
 from einops import rearrange
 
 class DeYO(nn.Module):
-    """SAR online adapts a model by Sharpness-Aware and Reliable entropy minimization during testing.
-    Once SARed, a model adapts itself by updating on every forward.
+    """DeYO online adapts a model by entropy minimization with entropy and PLPD filtering & reweighting during testing.
+    Once DeYOed, a model adapts itself by updating on every forward.
     """
     def __init__(self, model, args, optimizer, steps=1, episodic=False, deyo_margin=0.5*math.log(1000), margin_e0=0.4*math.log(1000)):
         super().__init__()
@@ -40,24 +40,24 @@ class DeYO(nn.Module):
         if targets is None:
             for _ in range(self.steps):
                 if flag:
-                    outputs, backward, final_backward = forward_and_adapt_sar(x, iter_, self.model, self.args,
+                    outputs, backward, final_backward = forward_and_adapt_deyo(x, iter_, self.model, self.args,
                                                                               self.optimizer, self.deyo_margin,
                                                                               self.margin_e0, targets, flag, group)
                 else:
-                    outputs = forward_and_adapt_sar(x, iter_, self.model, self.args,
+                    outputs = forward_and_adapt_deyo(x, iter_, self.model, self.args,
                                                     self.optimizer, self.deyo_margin,
                                                     self.margin_e0, targets, flag, group)
         else:
             for _ in range(self.steps):
                 if flag:
-                    outputs, backward, final_backward, corr_pl_1, corr_pl_2 = forward_and_adapt_sar(x, iter_, self.model, 
+                    outputs, backward, final_backward, corr_pl_1, corr_pl_2 = forward_and_adapt_deyo(x, iter_, self.model, 
                                                                                                     self.args, 
                                                                                                     self.optimizer, 
                                                                                                     self.deyo_margin,
                                                                                                     self.margin_e0,
                                                                                                     targets, flag, group)
                 else:
-                    outputs = forward_and_adapt_sar(x, iter_, self.model, 
+                    outputs = forward_and_adapt_deyo(x, iter_, self.model, 
                                                     self.args, self.optimizer, 
                                                     self.deyo_margin,
                                                     self.margin_e0,
@@ -89,7 +89,7 @@ def softmax_entropy(x: torch.Tensor) -> torch.Tensor:
     return -(x.softmax(1) * x.log_softmax(1)).sum(1)
 
 @torch.enable_grad()  # ensure grads in possible no grad context for testing
-def forward_and_adapt_sar(x, iter_, model, args, optimizer, deyo_margin, margin, targets=None, flag=True, group=None):
+def forward_and_adapt_deyo(x, iter_, model, args, optimizer, deyo_margin, margin, targets=None, flag=True, group=None):
     """Forward and adapt model input data.
     Measure entropy of the model prediction, take gradients, and update params.
     """
@@ -223,11 +223,11 @@ def load_model_and_optimizer(model, optimizer, model_state, optimizer_state):
 
 def configure_model(model):
     """Configure model for use with DeYO."""
-    # train mode, because SAR optimizes the model to minimize entropy
+    # train mode, because DeYO optimizes the model to minimize entropy
     model.train()
-    # disable grad, to (re-)enable only what SAR updates
+    # disable grad, to (re-)enable only what DeYO updates
     model.requires_grad_(False)
-    # configure norm for SAR updates: enable grad + force batch statisics (this only for BN models)
+    # configure norm for DeYO updates: enable grad + force batch statisics (this only for BN models)
     for m in model.modules():
         if isinstance(m, nn.BatchNorm2d):
             m.requires_grad_(True)
