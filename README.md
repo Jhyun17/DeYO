@@ -1,5 +1,6 @@
 # Entropy is not Enough for Test-Time Adaptation: From the Perspective of Disentangled Factors
 ![MIT License](https://img.shields.io/badge/license-MIT-blue.svg)  
+[![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/entropy-is-not-enough-for-test-time/test-time-adaptation-on-imagenet-c)](https://paperswithcode.com/sota/test-time-adaptation-on-imagenet-c?p=entropy-is-not-enough-for-test-time)
 
 This is the official implementation of [Entropy is not Enough for Test-Time Adaptation: From the Perspective of Disentangled Factors 🔗](https://openreview.net/forum?id=9w3iw8wDuE) 
 by Jonghyun Lee, Dahuin Jung, Saehyung Lee, Junsung Park, Juhyeon Shin, Uiwon Hwang and Sungroh Yoon (**ICLR 2024 Spotlight, Top-5% of the submissions**).  
